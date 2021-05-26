@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "system_error": "cpp",
+        "typeinfo": "cpp",
+        "memory": "cpp",
+        "optional": "cpp",
+        "ranges": "cpp",
+        "stop_token": "cpp",
+        "atomic": "cpp",
+        "chrono": "cpp",
+        "iterator": "cpp"
+    }
+}
