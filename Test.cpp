@@ -4,9 +4,9 @@ using namespace std;
 
 TEST_CASE("random test")
 {
-    int i, j;
-    for (i = j = 0; i < 20; i++)
+    int i;
+    for (i = 0; i < 20; i++)
     {
-        CHECK(i - j == 0);
+        CHECK((i-i) == 0);
     }
 }

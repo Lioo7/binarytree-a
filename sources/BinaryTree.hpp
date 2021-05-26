@@ -65,7 +65,7 @@ namespace ariel
         BinaryTree()
         {
             // this.root = Node();
-            this->root = new Node();
+            // this->root = new Node();
         }
 
         /*===========================================Insert-Methods=========================================*/
@@ -74,6 +74,7 @@ namespace ariel
         BinaryTree<T> &add_root(T new_root_value)
         {
             // this->root->value = new_root_value;
+            return *this;
         }
 
         // adds a new node to be the left child of the exist given parent
@@ -87,6 +88,7 @@ namespace ariel
 
             //     p->left = child;
             // }
+            return *this;
         }
 
         // adds a new node ot be the right child of the exist given parent
@@ -99,129 +101,91 @@ namespace ariel
             //     Node *child = Node(right_child); // TODO: ->
             //     p->right = child;
             // }
+            return *this;
         }
 
+        /*========================================Inner-Iterator-Class==================================*/
+
+        class Iterator
+        {
+        private:
+            Node *p;
+
+        public:
+            Iterator()
+            {
+            }
+
+            T &operator*()
+            {
+                return p->value;
+            }
+
+            T *operator->()
+            {
+                return &(p->value);
+            }
+
+            // ++i;
+            Iterator &operator++()
+            {
+                p = p->left;
+                return *this;
+            }
+
+            // i++;
+            const Iterator operator++(int)
+            {
+                Iterator temp = *this;
+                p = p->left;
+                return temp;
+            }
+
+            bool operator==(const Iterator &other)
+            {
+                return p == other.p;
+            }
+
+            bool operator!=(const Iterator &other)
+            {
+                return p != other.p;
+            }
+        };
+
         /*==========================================iterators-Methods===========================================*/
-        /*====================================Inner-PreOrderIterator-Class======================================*/
 
-        class PreOrderIterator
+        Iterator begin()
         {
-        private:
-            Node *p;
-
-        public:
-            // constructor
-            // PreOrderIterator();
-            // methods
-            T &operator*()
-            {
-                return p->value;
-            }
-            T *operator->()
-            {
-                return &(p->value);
-            }
-            PreOrderIterator &operator++() // pre(++i)
-            {
-                return *this;
-            }
-            PreOrderIterator &operator++(int) // post(i++)
-            {
-                Node temp = *this;
-                return temp;
-            }
-            bool operator==(const PreOrderIterator &other)
-            {
-                return (p == other.p);
-            }
-            bool operator!=(const PreOrderIterator &other)
-            {
-                return (p != other.p);
-            }
-        };
-
-        /*====================================Inner-InOrderIterator-Class=======================================*/
-
-        class InOrderIterator
+            return Iterator();
+        }
+        Iterator end()
         {
-        private:
-            Node *p;
-
-        public:
-            // constructor
-            // InOrderIterator();
-            // methods
-            T &operator*()
-            {
-                return p->value;
-            }
-            T *operator->()
-            {
-                return &(p->value);
-            }
-            InOrderIterator &operator++() // pre(++i)
-            {
-                return *this;
-            }
-            InOrderIterator &operator++(int) // post(i++)
-            {
-                Node temp = *this;
-                ;
-                return temp;
-            }
-            bool operator==(const InOrderIterator &other)
-            {
-                return (p == other.p);
-            }
-            bool operator!=(const InOrderIterator &other)
-            {
-                return (p != other.p);
-            }
-        };
-        /*====================================Inner-PostOrderIterator-Class======================================*/
-
-        class PostOrderIterator
+            return Iterator();
+        }
+        Iterator begin_preorder()
         {
-        private:
-            Node *p;
-
-        public:
-            // constructor
-            PostOrderIterator();
-            // methods
-            T &operator*()
-            {
-                return p->value;
-            }
-            T *operator->()
-            {
-                return &(p->value);
-            }
-            PostOrderIterator &operator++() // pre(++i)
-            {
-                return *this;
-            }
-            PostOrderIterator &operator++(int) // post(i++)
-            {
-                Node temp = *this;
-                return temp;
-            }
-            bool operator==(const PostOrderIterator &other)
-            {
-                return (p == other.p);
-            }
-            bool operator!=(const PostOrderIterator &other)
-            {
-                return (p != other.p);
-            }
-        };
-
-        PreOrderIterator begin_preorder();
-        PreOrderIterator end_preorder();
-        InOrderIterator begin_inorder();
-        InOrderIterator end_inorder();
-        PostOrderIterator begin_postorder();
-        PostOrderIterator end_postorder();
+            return Iterator();
+        }
+        Iterator end_preorder()
+        {
+            return Iterator();
+        }
+        Iterator begin_inorder()
+        {
+            return Iterator();
+        }
+        Iterator end_inorder()
+        {
+            return Iterator();
+        }
+        Iterator begin_postorder()
+        {
+            return Iterator();
+        }
+        Iterator end_postorder()
+        {
+            return Iterator();
+        }
 
         /*========================================Operator-Overloading===========================================*/
 
