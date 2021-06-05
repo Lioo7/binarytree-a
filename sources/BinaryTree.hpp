@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdio.h>
 
 namespace ariel
 {
@@ -13,20 +14,12 @@ namespace ariel
             T value;     // the value of the node
             Node *left;  // left child
             Node *right; //right child
-            // constructors
-            Node()
-            {
-                Node *node = new Node();
-                node->value = nullptr;
-                node->left = nullptr;
-                node->right = nullptr;
-            }
+            // constructor
             Node(T input_value)
             {
-                Node *node = new Node();
-                node->value = input_value;
-                node->left = nullptr;
-                node->right = nullptr;
+                this->value = input_value;
+                this->left = nullptr;
+                this->right = nullptr;
             }
             // destructor
             ~Node();
@@ -34,8 +27,8 @@ namespace ariel
 
         /*===========================================Private-Methods=========================================*/
 
-    private:
-        Node *root; // the root of the tree
+        Node *root;                        // the root of the tree
+        // std ::multimap<T, Node *> my_tree; // contains all the nodes in the tree
 
         // This function search the given node value in the tree and return a poniter to its node
         Node *search_node(T target_value)
@@ -64,8 +57,7 @@ namespace ariel
         // constructor
         BinaryTree()
         {
-            // this.root = Node();
-            // this->root = new Node();
+            this->root = nullptr;
         }
 
         /*===========================================Insert-Methods=========================================*/
@@ -73,21 +65,32 @@ namespace ariel
         // gets an input and puts it at the root of the tree
         BinaryTree<T> &add_root(T new_root_value)
         {
-            // this->root->value = new_root_value;
+            // // empty tree
+            // if (root == nullptr)
+            // {
+            //     root = new Node(new_root_value);
+            // }
+            // // there is a root already
+            // else
+            // {
+            //     root->value = new_root_value;
+            // }
+
             return *this;
         }
 
         // adds a new node to be the left child of the exist given parent
         BinaryTree<T> &add_left(T parent, T left_child)
         {
-            // Node<T> *p = nullptr;
-            // p = search_node(parent);
-            // if (p != nullptr)
+            // // the tree is empty
+            // if (root == nullptr)
             // {
-            //     Node *child = Node(left_child); // TODO: ->
-
-            //     p->left = child;
+            //     throw std::invalid_argument("Error: can't add this element beacuse the tree is empty");
             // }
+            // Node n_parent;
+            // ;
+            // // this node already exist
+
             return *this;
         }
 
